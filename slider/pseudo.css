@@ -1,0 +1,64 @@
+/* Simple Reset */
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+/* Back To DS */
+#backtods {
+	height: 25px;
+	background: #e4e0e0;
+	font: .7em/25px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-align: center;
+}
+
+#backtods a {
+	text-decoration: none;
+}
+
+#backtods a:hover {
+	text-decoration: underline;
+}
+
+/* Basic Menu Styles */
+
+#menu {
+	height: 100px; width: 630px;
+    overflow: hidden;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#menu ul li {
+	float: left;
+	margin: 0 5px;
+	list-style-type: none;
+}
+
+/* Menu Link Styles */
+#menu ul a {
+	display: block;
+	background: #e70f23;
+	color: #fff;
+	height: 100px;
+	width: 200px;
+	font: lighter 2em/100px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-decoration: none;
+	-webkit-transition: margin .4s ease-in-out;
+	-moz-transition: margin .4s ease-in-out;
+	-o-transition: margin .4s ease-in-out;
+	-ms-transition: margin .4s ease-in-out;
+	transition: margin .4s ease-in-out;
+}
+
+/* Secondary Link Styles */
+#menu ul a:nth-of-type(even) {
+	background: #000;
+	color: white;
+}
+
+/* Hover Slide */
+#menu ul li:hover :first-child {
+	margin-top: -100px;
+}
