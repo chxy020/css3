@@ -1,0 +1,39 @@
+<style>
+	div {
+		width: 500px;
+		height: 300px;
+		margin: 30px auto;
+		position: relative;
+		background: url(images/bg-grid.jpg) no-repeat center center;
+		background-size: 100% 100%;
+	}
+	
+	div img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -35px;
+		margin-top: -50px;
+	}
+	
+	div img:nth-child(1) {
+		opacity: .5;
+		z-index: 1;
+	}
+	
+	div img:nth-child(2) {
+		opacity: 1;
+		z-index: 2;
+		transform: translate(100px, 0);
+	}
+	
+	div img:nth-child(1){ opacity: .5; z-index: 1; } div img:nth-child(2){ z-index: 2; transform: translate(100px,-100px); } div img:nth-child(3){ z-index: 3; transform: translate(100px,100px); } div img:nth-child(4){ z-index: 3; transform: translate(-100px,-100px); } div img:nth-child(5){ z-index: 3; transform: translate(-100px,100px); }
+</style>
+
+<div> 
+	<img src="images/cardKingClub.png" alt="" width="70" height="100" /> 
+	<img src="images/cardKingClub.png" alt="" width="70" height="100" /> 
+	<img src="images/cardKingClub.png" alt="" width="70" height="100" /> 
+	<img src="images/cardKingClub.png" alt="" width="70" height="100" /> 
+	<img src="images/cardKingClub.png" alt="" width="70" height="100" /> 
+</div>

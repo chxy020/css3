@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html id="html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+    <style>
+		body{ background:#202A38}
+		.fixeddiv{
+			position:absolute;
+			top:100px;
+			left:500px;
+		}
+		.container-dau{
+			width:175px;
+			height:15px;
+			background:rgba(4,77,111,0.7);
+			position:relative;
+		}
+		.dau-num{
+		    height: 15px;
+		    width: 150px;
+		    margin: 0 auto;
+		}  
+		.dau-num > i{
+	        /*color: #76cbff;*/
+    		/*font-size: 16px;*/
+		    /*font-family: Arial,Times New Roman,Microsoft YaHei;*/
+		    font-style: normal;
+		    display: block;
+		    text-align: center;
+		    float: left;
+		    width: 15px;
+		    height: 15px;
+		    line-height: 15px;
+		}
+		.dau-num > i.dec{
+			width:5px;
+		}
+    </style>
+</head>
+<body>
+	
+	<div class="fixeddiv">
+		<div class="container-dau">
+			<div id="adu_num" class="dau-num">
+				<i><img src="images/0.svg" /></i>
+				<i><img src="images/1.svg" /></i>
+				<i><img src="images/2.svg" /></i>
+				<i><img src="images/3.svg" /></i>
+				<i><img src="images/4.svg" /></i>
+				<i><img src="images/5.svg" /></i>
+				<i><img src="images/6.svg" /></i>
+				<i><img src="images/7.svg" /></i>
+				<i><img src="images/8.svg" /></i>
+				<i><img src="images/9.svg" /></i>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script>
+	window.requestAnimationFrame = (function(){
+		return window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			window.msRequestAnimationFrame ||
+			function(callback){
+	   			window.setTimeout(callback,1000/60);
+			}
+	})();
+	window.cancelAnimationFrame = (function(id){
+		return window.cancelAnimationFrame || 
+		window.mozCancelAnimationFrame ||
+		function(id){
+   			window.clearTimeout(id);
+		}
+	})();
+
+	
+	//大的数字概率翻倍
+	var random = [1000000000,1000000000,1000000000,100000000,100000000,100000000,10000000,10000000,1000000,100000];
+	var daudom = document.getElementById('adu_num');
+	var animid = null;
+	
+	function NumAnim(){
+		var rd = Math.floor(Math.random()*random.length);
+		var maxnum = random[rd] || random[0];
+		var num = Math.floor(Math.random()*maxnum) + "";
+		NumHtml(num);
+	}
+	function NumHtml(num,stop){
+		var n = num.split('');
+		var html = [];
+		var len = n.length;
+		for(var i = len-1; i>=0; i--){
+			if(i===(len-1) && +n[i] === 0){
+                continue;
+            }
+			html.push('<i><img src="images/' + n[i] + '.svg" ></i>');
+		}
+		daudom.innerHTML = html.join('');
+		daudom.style.width = html.length*15+"px";
+	}
+	
+	
+	function loop(){
+        //流畅动画过程
+    	animid = requestAnimationFrame(loop);
+    	NumAnim();
+	}
+	
+	//window.onload = loop;
+	loop();
+	
+	setTimeout(function(){
+		cancelAnimationFrame(animid);
+		var rd = Math.floor(Math.random()*random.length);
+		var maxnum = random[rd] || random[0];
+		var num = Math.floor(Math.random()*maxnum) + "";
+		NumHtml(num);
+	},3000);
+</script>

@@ -1,0 +1,37 @@
+<style>
+	div {
+		width: 500px;
+		height: 300px;
+		margin: 30px auto;
+		position: relative;
+		background: url(http://www.w3cplus.com/sites/default/files/blogs/2013/1311/bg.jpg) repeat center center;
+	}
+	
+	div img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -70px;
+		margin-top: -100px;
+	}
+	
+	div img:nth-child(1) {
+		z-index: １;
+		opacity: .6;
+	}
+	
+	div img:nth-child(2) {
+		z-index: 2;
+		transform: rotate(45deg);
+	}
+	
+	div img:nth-child(2) {
+		z-index: 2;
+		transform-origin: top left;
+		transform: rotate(45deg);
+	}
+</style>
+<div> 
+	<img src="http://www.w3cplus.com/sites/default/files/blogs/2013/1311/cardKingClub.png" alt="" width="70" height="100" /> 
+	<img src="http://www.w3cplus.com/sites/default/files/blogs/2013/1311/cardKingClub.png" alt="" width="70" height="100" /> 
+</div>

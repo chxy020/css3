@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html id="html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+    <style>
+	body{ background:#202A38}
+    
+    .circle{
+    	position:absolute;
+    	top:100px;
+    	left:200px;
+        border: 4px solid red;
+        border-radius: 4px;
+        width: 0px;
+        height: 0px;
+        transform:translate(-2px,-2px) rotateX(60deg);
+        opacity:1;
+    }
+    .circle.circle1{
+        -webkit-animation: scale 1600ms ease-in 0s infinite;
+    }
+    .circle.circle2{
+        -webkit-animation: scale 1600ms ease-in 300ms infinite;
+    }
+    .circle.circle3{
+        border: 6px solid red;
+        border-radius: 6px;
+        opacity:0;
+        transform:translate(-3px,-3px) rotateX(60deg);
+        -webkit-animation: scale 1000ms ease-in 500ms infinite;
+    }
+    @-webkit-keyframes scale {
+    	0%{
+            opacity:1;
+        }
+        100%{
+            border: 1px solid red;
+            border-radius: 40px;
+            width: 78px;
+            height: 78px;
+            opacity:0;
+            transform:translate(-37px,-37px) rotateX(60deg);
+        }
+    }
+    
+    .mycanvas{
+    	position:absolute;
+    	top:100px;
+    	left:400px;
+    	width:300px;
+    	height:300px;
+    	border:1px solid red;
+    }
+    .mycanvas1{
+    	position:absolute;
+    	top:100px;
+    	left:450px;
+    	width:300px;
+    	height:300px;
+    	border:1px solid green;
+    }
+    </style>
+</head>
+<body>
+	
+	
+	<div>
+		<div class="circle circle1"></div>
+		<div class="circle circle2"></div>
+		<div class="circle circle3"></div>
+	</div>
+	
+	<!--<div class="circle circle1"></div>-->
+	<!--<div class="circle circle1"></div>
+	
+	<div class="circle circle2"></div>
+	
+	<div class="circle circle3"></div>-->
+	
+	<canvas id="mycanvas" class="mycanvas"></canvas>
+	<canvas id="mycanvas1" class="mycanvas mycanvas1"></canvas>
+</body>
+</html>
+
+<script>
+	window.requestAnimationFrame = (function(){
+		return window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			function(callback){
+	   			window.setTimeout(callback,1000/60);
+			}
+	})();
+
+		//生成min到max之间的随机数
+		function random(min,max){
+	        return Math.random()*(max-min)+min;
+		}
+		
+		//计算点(sx,sy)到点(tx,ty)之间的距离
+		function caculateDistance(sx,sy,tx,ty){
+			var xDistance = sx-tx,
+				yDistance = sy-ty;
+			return Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance,2));
+		}
+		
+		var acceleration = 1.05; //加速度
+		function drawCircle(){
+			//让目标标示处圆圈动起来
+	        if(crad < 50) {
+                crad += 1;
+	        } else {
+                crad = 1;
+	        }
+	        if(crad > 1){
+	        	cborder -= 0.1;
+	        }else{
+	        	cborder = 5;
+	        }
+	        //画出目标位置标示小圆圈
+	        ctx.beginPath();
+	        ctx.lineWidth = cborder;
+	        ctx.strokeStyle = "#ff0000";
+	        ctx.arc(200,200,crad,0,Math.PI*2);
+	        ctx.stroke();
+	        ctx.closePath();
+		}
+		function drawCircle1(){
+			//让目标标示处圆圈动起来
+	        if(crad1 < 50) {
+                crad1 += 1;
+	        } else {
+                crad1 = 1;
+	        }
+	        if(crad1 > 1){
+	        	cborder1 -= 0.1;
+	        }else{
+	        	cborder1 = 5;
+	        }
+	        //画出目标位置标示小圆圈
+	        ctx1.beginPath();
+	        ctx1.lineWidth = cborder1;
+	        ctx1.strokeStyle = "#ff0000";
+	        ctx1.arc(200,200,crad1,0,Math.PI*2);
+	        ctx1.stroke();
+	        ctx1.closePath();
+		}
+
+		
+		
+		var canvas = document.getElementById("mycanvas"),
+	        ctx = canvas.getContext("2d"),
+	        cw = 400;//window.innerWidth,
+	        ch = 400;//window.innerHeight,
+	        crad = 1;
+	        cborder = 5;
+	        timerTick = 0;
+	    
+		//设置canvas画布的宽高
+		canvas.width = cw;
+		canvas.height = ch;
+		
+		var canvas1 = document.getElementById("mycanvas1"),
+	        ctx1 = canvas1.getContext("2d"),
+	        cw = 400;//window.innerWidth,
+	        ch = 400;//window.innerHeight,
+	        crad1 = 1;
+	        cborder1 = 5;
+	        timerTick1 = 0;
+	        canvas1.width = cw;
+		canvas1.height = ch;
+		//fireworks.push(new Firework(100,800,800,100));
+		//createParticles(800,100);
+		
+		function loop(){
+	        //流畅动画过程
+	        requestAnimationFrame(loop);
+	        
+	        ctx.globalCompositeOperation = 'destination-out';
+	        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+	        ctx.fillRect(0, 0, cw, ch);
+	        ctx.globalCompositeOperation = 'lighter';
+	        drawCircle();
+	        
+	        ctx1.clearRect(0,0,400,400);
+	        drawCircle1();
+		}
+		
+		window.onload = loop;
+	
+</script>
